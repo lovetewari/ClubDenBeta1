@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClubDen | Home</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <section>
+        <nav>
+            <img src="/img/logo.png" alt="ClubDen">
+            <ul class="left">
+                <li><a href="/">Home</a></li>
+                <li><a class="active" href="/allJobs">Current Club Openings</a></li>
+                <li><a href="/allEmployers">Club Details</a></li>
+            </ul>
+        </nav>
+    </section>
+
+    <section>
+        <div class="header">
+            <h1>Active Club Recruitment's</h1>
+        </div>
+    </section>
+
+    <section>
+        <div class="job-cards-containers" id="job">
+            <div class="job-card">
+                <% for (var i=0; i <job.length; i++) { %>
+                    <p> <b> Company name: </b>
+                        <%= job[i].company_id %>
+                    </p>
+                    <br>
+                    <p> <b>Position:</b>
+                        <%= job[i].position %>
+                    </p>
+                    <br>
+                    <p> <b> Degrees:</b>
+                        <%= job[i].degrees %>
+                    </p>
+                    <br>
+                    <p> <b> Passout years:</b>
+                        <%= job[i].batches %>
+                    </p>
+                    <br>
+                    <p> <b> Required CPI out of 10: </b>
+                        <%= job[i].req_cpi %>
+                    </p>
+                    <br>
+                    <p> <b>Openings: </b>
+                        <%= job[i].ctc %>
+                    </p>
+                    <br>
+                    <p> <b> Locations:</b>
+                        <%= job[i].locations %>
+                    </p>
+                    <br>
+                    <p> <b> Job apply URL: </b> <a id="link" href="<%= job[i].apply %>">Click here </a> %> </p>
+                    <br>
+                    <% if (i!=job.length-1) {%> 
+                        <hr>
+                        <% } %> 
+                    <br>
+                    <% } %>
+            </div>
+
+        </div>
+    </section>
+
+    <script src="./allJobs.js"></script>
+</body>
+
+<footer>
+    <div class="copyright">
+        <p>Copyright &copy;  2023 ClubDenβ Version. All rights reserved to the Developers Love, Uday & Shaurya</p>
+    </div>
+</footer>
+
+</html>

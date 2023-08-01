@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Job</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <section>
+        <nav>
+            <img src="/img/logo.png" alt="ClubDen">
+            <ul class="left">
+                <li><a href="/employerHome">Profile</a></li>
+                <li><a href="/myJobs">Current Openings</a></li>
+                <li><a class="active" href="/addJob">Add Club Openings</a></li>
+                <li><a href="/updateEmployer">Edit Profile</a></li>
+            </ul>
+        </nav>
+    </section>
+    <section>
+        <div class="header">
+            <h1>Add Your Club New Opening Details For Recruitment</h1>
+        </div>
+    </section>
+
+    <section>
+        <div class="form-container">
+            <form action="/addJob" method="post">
+                <input type="text" name="position" placeholder="Enter Position For Club Recruitment" required>
+                <br>
+                <br>
+                <p>Required Degree For Your Club</p>
+                <br>
+                <label for="d1" class="container"> BTech <input type="checkbox" id="d1" name="degree"
+                value="BTech"><span class="checkmark"></span> </label><br>
+                
+                <label for="d2" class="container"> BE <input type="checkbox" id="d2" name="degree" value="BE"><span class="checkmark"></span></label><br>
+                
+                <label for="d3" class="container"> BSc <input type="checkbox" id="d3" name="degree" value="BSc"><span class="checkmark"></span></label><br>
+                
+                <label for="d4" class="container"> MTech <input type="checkbox" id="d4" name="degree" value="MTech"><span class="checkmark"></span></label><br>
+                
+                <label for="d5" class="container"> MSc <input type="checkbox" id="d5" name="degree" value="MSc"><span class="checkmark"></span></label><br>
+                
+                <label for="d6" class="container"> MBA <input type="checkbox" id="d6" name="degree" value="MBA"><span class="checkmark"></span></label><br>
+                <br>
+                <p>Passout year</p>
+                <br>
+                <label for="y1" class="container"> 2023 <input type="checkbox" id="y1" name="year" value="2023"><span class="checkmark"></span></label><br>
+                
+                <label for="y2" class="container"> 2024 <input type="checkbox" id="y2" name="year" value="2024"><span class="checkmark"></span></label><br>
+                
+                <label for="y3" class="container"> 2025 <input type="checkbox" id="y3" name="year" value="2025"><span class="checkmark"></span></label><br>
+                
+                <label for="y4" class="container"> 2026 <input type="checkbox" id="y4" name="year" value="2026"><span class="checkmark"></span></label><br>
+                
+                <label for="y5" class="container"> 2027 <input type="checkbox" id="y5" name="year" value="2027"><span class="checkmark"></span></label><br>
+                
+                <label for="y6" class="container"> 2028 <input type="checkbox" id="y6" name="year" value="2028"><span class="checkmark"></span></label><br>
+                
+                <label for="y7" class="container"> 2029 <input type="checkbox" id="y7" name="year" value="2029"><span class="checkmark"></span></label><br>
+                
+                <label for="y8" class="container"> 2030 <input type="checkbox" id="y8" name="year" value="2030"><span class="checkmark"></span></label><br>
+
+                <input type="number" name="cpi" step=".01" min="0" max="10" placeholder="Required CGPA out of 10"
+                    required>
+                <input type="number" step=".01" name="Openings" min="0" placeholder="Enter Total Openings " required>
+                <input type="url" name="apply" placeholder="Club apply link(Gform/Club Website Link)">
+                <br>
+                <br>
+                <p>Club Interview locations</p>
+                <br>
+                
+                <label for="l1" class="container"> Offline Interview(Prefer TP Stairs) <input type="checkbox" id="l1" name="location" value="Offline Interview(Prefer TP Stairs)"><span class="checkmark"></span></label><br>
+                
+                <label for="l7" class="container"> Online Interview(Prefer Gmeet) <input type="checkbox" id="l7" name="location" value="Online Interview(Prefer Gmeet)"><span class="checkmark"></span></label><br>
+
+
+
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </section>
+</body>
+
+<footer>
+    <div class="copyright">
+        <p>Copyright &copy;  2023 ClubDenβ Version. All rights reserved to the Developers Love, Uday & Shaurya</p>
+    </div>
+</footer>
+
+</html>

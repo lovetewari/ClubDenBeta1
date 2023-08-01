@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClubDen | Company</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <section>
+        <nav>
+            <img src="/img/logo.png" alt="ClubDen">
+            <ul class="left">
+                <li><a href="/employerHome">Profile</a></li>
+                <li><a class="active" href="/myJobs">Current Openings</a></li>
+                <li><a href="/addJob">Add Club Openings</a></li>
+                <li><a href="/updateEmployer">Edit Profile</a></li>
+            </ul>
+        </nav>
+    </section>
+    <section>
+        <div class="header">
+            <h1>Update Club Recruitment Application</h1>
+        </div>
+    </section>
+    <section>
+        <div class="form-container">
+            <form action="/updateJob" method="post">
+                <label for="j1">Position</label>
+                <input id="j1" type="text" name="position" placeholder="Position" value="<%= position %>" required>
+                <label for="j2">Required CGPA</label>
+                <input id="j2" type="number" name="req_cpi" placeholder="Required CPI" value="<%= req_cpi %>" required>
+                <label for="j3">Total No of Openings</label>
+                <input id="j3" type="number" name="Openings" placeholder="Total Openings" value="<%= Openings %>" required>
+
+                <p>Required Degree</p>
+                <input type="checkbox" id="d1" name="degree" value="BTech" <% if (degree.includes("BTech")) { %>checked<% } %>>
+                <label for="d1"> BTech</label><br>
+                <input type="checkbox" id="d2" name="degree" value="BE" <% if (degree.includes("BE")) { %>checked<% } %>>
+                <label for="d2"> BE</label><br>
+                <!-- Add other checkboxes for degrees as needed -->
+
+                <p>Expected year of completion</p>
+                <input type="checkbox" id="y1" name="year" value="2019" <% if (year.includes("2019")) { %>checked<% } %>>
+                <label for="y1"> 2023</label><br>
+                <input type="checkbox" id="y2" name="year" value="2020" <% if (year.includes("2020")) { %>checked<% } %>>
+                <label for="y2"> 2024</label><br>
+                <!-- Add other checkboxes for years as needed -->
+
+                <p>Job locations</p>
+                <input type="checkbox" id="l1" name="location" value="Offline Interview(Prefer TP Stairs)" <% if (location.includes("Offline Interview(Prefer TP Stairs)")) { %>checked<% } %>>
+                <label for="l1"> Offline Interview(Prefer TP Stairs)</label><br>
+                <input type="checkbox" id="l2" name="location" value="Online Interview(Prefer Gmeet)" <% if (location.includes("Online Interview(Prefer Gmeet)")) { %>checked<% } %>>
+                <label for="l2"> Online Interview(Prefer Gmeet)</label><br>
+                <!-- Add other checkboxes for locations as needed -->
+
+                <button type="submit" name="submit">Update</button>
+            </form>
+        </div>
+    </section>
+    <hr>
+    <script src="./companySignup.js"></script>
+</body>
+
+<footer>
+    <div class="copyright">
+        <p>Copyright &copy;  2023 ClubDenβ Version. All rights reserved to the Developers Love, Uday & Shaurya</p>
+    </div>
+</footer>
+
+</html>

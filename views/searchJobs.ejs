@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClubDen | Home</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <section>
+        <nav>
+            <img src="/img/logo.png" alt="ClubDen">
+            <ul class="left">
+                <li><a href="/candidateHome">User Privacy</a></li>
+                <li><a class="active" href="/searchJobs">Search Current Club Openings</a></li>
+                <li><a href="/updateCandidate">Edit Profile</a></li>
+            </ul>
+        </nav>
+    </section>
+
+    <section>
+    </section>
+
+    <div class="side-bar-container">
+
+        <section class="left-section">
+            <div class="filter-form">
+                <h4 class="sub-header">Apply Filters</h4>
+                <form action="/searchJobs" method="post">
+                    <br>
+                    <p>Job location</p>
+                    <select name="locations" id="location">
+                        <option value="Any" selected>Any</option>
+                        <option value="Offline Interview(Prefer TP Stairs)"> Offline Interview(Prefer TP Stairs) </option>
+                        <option value="Online Interview(Prefer Gmeet)"> Online Interview(Prefer Gmeet) </option>
+                    </select>
+                    <br>
+                    <p>Degree required</p>
+                    <select name="degree" id="degree">
+                        <option value="Any" selected>Any</option>
+                        <option value="BTech"> BTech </option>
+                        <option value="BE"> BE </option>
+                        <option value="BSc"> BSc </option>
+                        <option value="MTech"> MTech </option>
+                        <option value="MSc"> Msc </option>
+                        <option value="MBA"> MBA </option>
+                    </select>
+                    <br>
+                    <p>Total Openings</p>
+                    <select name="ctc" id="ctc" >
+                        <option value="Any" selected>Any</option>
+                        <option value=">30"> &gt 30 </option>
+                        <option value="20-30"> 20 to 30 </option>
+                        <option value="10-20"> 10 to 20 </option>
+                        <option value="5-10"> 5 to 10 </option>
+                        <option value="<5"> &lt 5 </option>
+                    </select>
+                    <br>
+                    <p>Passout Year</p>
+                    <select name="year" id="year">
+                        <option value="Any" selected>Any</option>
+                        <option value="2023"> 2023 </option>
+                        <option value="2024"> 2024 </option>
+                        <option value="2025"> 2025 </option>
+                        <option value="2026"> 2026 </option>
+                        <option value="2027"> 2027 </option>
+                        <option value="2028"> 2028 </option>
+                        <option value="2029"> 2029 </option>
+                        <option value="2030"> 2030 </option>
+                    </select>
+                    <br>
+                    <button type="submit">Search</button>
+                </form>
+            </div>
+        </section>
+
+        <section class="right-section">
+            <div class="job-cards-containers" id="job">
+                <div class="header">
+
+                    <% if (filter == 'no') {%> 
+                    <h1>You are eligible for the following jobs</h1>
+                    <br>
+                    <h3>Jobs found: <%= job.length %> </h3>
+                    <% } else { %> 
+                    <h3>Jobs found: <%= job.length %> </h3>
+                    <br>
+                    <br>
+                    <br>
+                    <div class="filter-tags-container">
+                        <div class="filter-tags">
+                            <p><b>Location: </b> <%=location_filter %>  </p>
+                        </div>
+                        <div class="filter-tags">
+                            <p><b>Degree: </b> <%=degree_filter %> </p>
+                        </div>
+                        <div class="filter-tags">
+                            <p><b>Total No of Openings: </b> <%=ctc_filter %>  </p>
+                        </div>
+                        <div class="filter-tags">
+                            <p><b>Paasout year: </b> <%=year_filter %>  </p>
+                        </div>
+                    </div>
+                    <% } %> 
+                </div>
+                <div class="job-card" >
+    
+                    <% if (job.length == 0) {%> 
+    
+                        <% if (filter=="no") {%> 
+                            <h3 style="text-align:center">Sorry, there are no jobs available for you currently</h3>
+                            <br>
+                        <% } else { %>
+                            <h3 style="text-align:center">No jobs found for your filters</h3>
+                            <br>
+                        <% } %> 
+                        <div class="icon-container">
+                            <img src="/img/embarrassed.png" style="height:80px">
+                        </div>   
+                    <% } %> 
+    
+                    <% for (var i = 0; i <job.length; i++) {        %> 
+                        <br>
+                        <p> <b>  Company name: </b><%= job[i].company_id %> </p>
+                        <br>
+                        <p> <b>Position:</b> <%= job[i].position %> </p> 
+                        <br>
+                        <p> <b> Degrees:</b> <%= job[i].degrees %> </p> 
+                        <br>
+                        <p> <b> Passout years:</b>  <%= job[i].batches %> </p> 
+                        <br>
+                        <p> <b> Required CGPA out of 10: </b> <%= job[i].req_cpi %> </p> 
+                        <br>
+                        <p> <b>Openings: </b> <%= job[i].ctc %> </p> 
+                        <br>
+                        <p> <b> Location:</b> <%= job[i].location %> </p> 
+                        <br>
+                        <p> <b> Job apply URL: </b> <a id="link" href="<%= job[i].apply %>">Click here</a> </p>
+
+                        <br>
+                        <br>
+                        <% if (i!=job.length-1) {%> 
+                            <hr>
+                        <% } %> 
+                        <br>
+                        <% } %> 
+                </div>
+    
+            </div>
+            <script src="applyLink.js"></script>
+        </section>
+    </div>
+
+    <footer>
+        <div class="copyright">
+            <p>Copyright &copy;  2023 ClubDenβ Version. All rights reserved to the Developers Love, Uday & Shaurya</p>
+        </div>
+    </footer>
+    <script src="./allJobs.js"></script>
+</body>
+
+</html>

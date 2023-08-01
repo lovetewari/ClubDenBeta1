@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClubDen | Student</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <section>
+        <nav>
+            <img src="/img/logo.png" alt="ClubDen">
+            <ul class="left">
+                <li><a href="/">Home</a></li>
+                <li><a href="/allJobs">Current Club Openings</a></li>
+                <li><a href="/allEmployers">Club Details</a></li>
+            </ul>
+        </nav>
+    </section>
+    <section>
+        <div class="header">
+            <h1>Candidate Login</h1>
+        </div>
+    </section>
+     
+    <section>
+        <div class="form-container">
+            <div class="icon-container">
+                <img src="/img/candidate.gif" style="height:150px">
+            </div>
+            <form action="/candidateLogin" method="post">
+                <input type="email" name="email" placeholder="Email ID" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <button type="submit" name="submit">Login</button>
+            </form>
+            <br>  
+            <hr>
+            <br>
+            <div class="below-form">
+                <h5>Haven't registered yet?  <a href="/candidateSignup">Sign Up</a></h5>
+                
+                <!-- <button onclick="window.location.href = '/candidateSignup';">Register</button> -->
+            </div> 
+        </div>
+    </section>
+    <div class="error-mssg">
+        <% if (messages.error) { %>
+            <%= messages.error %>
+        <% } %>
+    </div>
+    <hr>
+    <section>
+        
+    </section>
+</body>
+<footer>
+    <div class="copyright">
+        <p>Copyright &copy;  2023 ClubDenβ Version. All rights reserved to the Developers Love, Uday & Shaurya</p>
+    </div>
+</footer>
+
+</html>

@@ -1,0 +1,26 @@
+# .gitignore
+# Files and directories to be ignored by Git
+
+# Ignore compiled code
+dist/
+build/
+
+# Ignore IDE-specific files
+.vscode/
+.idea/
+
+# Ignore sensitive information (example file)
+config/config.json
+
+# Ignore log files
+*.log
+
+# Ignore system-specific files (example)
+.DS_Store
+Thumbs.db
+
+# Ignore environment variables file
+.env
+
+# Ignore Node.js modules directory
+/node_modules/
