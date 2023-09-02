@@ -45,7 +45,6 @@ body {
     background-color: rgb(225, 240, 253);
 }
 
-/* Button Styles */
 button,
 .below-form button,
 .form-container button {
@@ -75,7 +74,6 @@ button:hover {
     transform: translateY(-1px);
 }
 
-/* Footer & Navigation shared properties */
 footer, nav {
     display: flex;
     justify-content: space-between;
@@ -86,7 +84,7 @@ footer, nav {
 }
 
 nav {
-    justify-content: space-between; /* Adjusts for more space between logo and menu items */
+    justify-content: space-between;
 }
 
 nav .logo {
@@ -98,7 +96,7 @@ nav ul {
     display: flex;
     flex: 2;
     list-style: none;
-    justify-content: space-evenly; /* Distribute space between items evenly */
+    justify-content: space-evenly;
 }
 
 nav li {
@@ -110,7 +108,7 @@ nav a, footer a {
     text-decoration: none;
     padding: 8px 16px;
     border-radius: 20px;
-    transition: background-color 0.3s; /* Smooth transition */
+    transition: background-color 0.3s;
 }
 
 nav a:hover, footer a:hover {
@@ -118,7 +116,7 @@ nav a:hover, footer a:hover {
 }
 
 nav a:active {
-    background-color: #003c7c; /* Darker shade when link is clicked */
+    background-color: #003c7c;
 }
 
 input, select {
@@ -192,8 +190,43 @@ button[type=submit] {
     justify-content: center;
 }
 
-/* Responsive Navbar for smaller devices */
+/* Mobile Navigation Styles */
+
+.nav-list {
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    top: 80px;
+    left: -100%;
+    transition: all 0.5s;
+}
+
+.nav-list.active {
+    left: 0;
+}
+
+.nav-list li {
+    padding: 5px;
+    list-style: none;
+}
+
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.bar {
+    background-color: #fff;
+    margin: 3px;
+    width: 25px;
+    height: 3px;
+}
+
 @media (max-width: 768px) {
+    .menu-toggle {
+        display: flex;
+    }
     nav ul {
         flex-direction: column;
         align-items: center;
@@ -240,4 +273,71 @@ button[type=submit] {
         margin: 1% 35%;
     }
 }
-`
+/* Your existing styles ... */
+
+/* Navigation */
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: #007bff;
+    color: #fff;
+}
+
+nav .logo {
+    flex: 1;
+    text-align: left;
+}
+
+nav ul {
+    display: flex;
+    flex: 2;
+    list-style: none;
+    justify-content: space-evenly; /* Distribute space between items evenly */
+}
+
+nav li {
+    margin: 0 0.5rem;
+}
+
+nav a, footer a {
+    color: #fff;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+nav a:hover, footer a:hover {
+    background-color: #0056b3;
+}
+
+nav a:active {
+    background-color: #003c7c; /* Darker shade when link is clicked */
+}
+
+/* Responsive styles for navigation without hamburger */
+
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+        padding: 0;
+    }
+
+    nav li {
+        margin: 0.5rem 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    nav a {
+        display: block;
+        width: 100%;
+        padding: 0.5rem 0; /* Bigger vertical padding for easy touch */
+    }
+}
+
+/* Your other styles ... */
