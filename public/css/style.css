@@ -341,3 +341,51 @@ nav a:active {
 }
 
 /* Your other styles ... */
+/* Your existing styles ... */
+
+.company-container,
+.student-container {
+    margin: 1% 5%;
+    width: 100%;
+    padding: 90px 0;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: aliceblue;
+    transition: all 250ms;
+}
+
+.company-container:hover,
+.student-container:hover {
+    border: 1px solid black;
+    background-color: rgb(225, 240, 253);
+}
+
+.job-card, 
+.profile-body {
+    margin: 5% 5%;
+    padding: 20px;
+    border: 1px solid black;
+    background-color: aliceblue;
+}
+
+/* ... Rest of your CSS ... */
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+
+    /* ... Your existing mobile styles ... */
+
+    .company-container,
+    .student-container {
+        padding: 40px 0; /* Decrease padding for mobile */
+    }
+
+    .job-card, 
+    .profile-body {
+        margin: 2% 2%; /* Reduce margin for mobile views */
+        padding: 10px;  /* Reduce padding */
+    }
+}
+
+/* Your other styles ... */
