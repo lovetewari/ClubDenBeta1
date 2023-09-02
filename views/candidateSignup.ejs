@@ -7,6 +7,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ClubDen | Student</title>
     <link rel="stylesheet" href="/css/style.css">
+    <script>
+        function validateEmail() {
+            const emailField = document.querySelector("[name='email']");
+            if (!emailField.value.endsWith("@srmist.edu.in")) {
+                alert("Please use an email ending with @srmist.edu.in");
+                return false;
+            }
+            return true;
+        }
+    </script>
 </head>
 
 <body>
@@ -20,6 +30,7 @@
             </ul>
         </nav>
     </section>
+
     <section>
         <div class="header">
             <h1>Candidate Register</h1>
@@ -27,9 +38,8 @@
     </section>
 
     <section>
-
         <div class="form-container-register">
-            <form action="/candidateSignup" method="post">
+            <form action="/candidateSignup" method="post" onsubmit="return validateEmail();">
                 <div class="student-signup-form">
 
                     <div class="">
@@ -39,48 +49,44 @@
                         <input type="text" name="middlename" placeholder="Middle name" required>
                         <input type="text" name="lastname" placeholder="Last name" required>
                         <input type="tel" name="mobileNo" placeholder="Mobile number" required>
-                        <input type="email" name="email" placeholder="Email ID" required>
+                        <input type="email" name="email" placeholder="Email ID (use @srmist.edu.in)" required>
                         <input type="password" name="password" placeholder="Password" required>
                         <input type="password" name="rePassword" placeholder="Confirm password" required>
-                        <br>
-                        <br>
+                        <br><br>
                         <label for="dob">Birth Date</label>
                         <input type="date" name="dob" id="dob" placeholder="Birth Date" required>
-                        <br>
-                        <br>
+                        <br><br>
                         <div class="radio-checkbox-container">
                             <p>Gender</p>
-                            <label> <input type="radio" id="male" name="gender" value="Male" required> <span>Male</span></label>
-                            <label> <input type="radio" id="female" name="gender" value="Female" required> <span>Female</span></label>
-                            <label> <input type="radio" id="other" name="gender" value="Other" required> <span>Other</span></label>
+                            <label><input type="radio" id="male" name="gender" value="Male" required> <span>Male</span></label>
+                            <label><input type="radio" id="female" name="gender" value="Female" required> <span>Female</span></label>
+                            <label><input type="radio" id="other" name="gender" value="Other" required> <span>Other</span></label>
                         </div>
-                    </div>
-                    <br>
-                    <hr>
-                    <br>
-                    <div>
+                        <br>
+                        <hr>
+                        <br>
                         <h3>Education Details</h3>
                         <br>
                         <input type="text" name="college" placeholder="College" required>
                         <select name="degree" id="degree" required>
                             <option value="" disabled selected>Select degree</option>
-                            <option value="BTech"> BTech </option>
-                            <option value="BE"> BE </option>
-                            <option value="BSc"> BSc </option>
-                            <option value="MTech"> MTech </option>
-                            <option value="MSc"> Msc </option>
-                            <option value="MBA"> MBA </option>
+                            <option value="BTech">BTech</option>
+                            <option value="BE">BE</option>
+                            <option value="BSc">BSc</option>
+                            <option value="MTech">MTech</option>
+                            <option value="MSc">MSc</option>
+                            <option value="MBA">MBA</option>
                         </select>
                         <input type="number" step=".01" name="cgpa" max="10" min="0" placeholder="Current CGPA out of 10" required>
                         <input type="number" name="batch" step="1" max="2030" min="2012" placeholder="Year of completion" required>
+                        <br>
+                        <hr>
+                        <br>
+                        <label for="resume">Upload Resume</label>
+                        <input type="file" id="resume" name="resume" accept="pdf/*" required>
+                        <input type="textarea" placeholder="Skills" name="skills">
+                        <button type="submit">Submit</button>
                     </div>
-                    <br>
-                    <hr>
-                    <br>
-                    <label for="resume">Upload Resume</label>
-                    <input type="file" id="resume" name="resume" accept="pdf/*" required>
-                    <input type="textarea" placeholder="Skills" name="skills">
-                    <button type="submit">Submit</button>
                 </div>
             </form>
             <br>
@@ -97,7 +103,7 @@
 
 <footer>
     <div class="copyright">
-        <p>Copyright &copy;  2023 ClubDenβ Version. All rights reserved to the Developers Love, Uday & Shaurya</p>
+        <p>Copyright &copy; 2023 ClubDenβ Version. All rights reserved to the Developers Love, Uday & Shaurya</p>
     </div>
 </footer>
 
