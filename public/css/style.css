@@ -11,36 +11,32 @@ body {
     height: 100vh;
 }
 
-.icon-container {
+.icon-container,
+.header,
+.sub-header,
+.below-form,
+.text-center {
     text-align: center;
-    margin-top: 2%;
-    margin-bottom: 2%;
+    margin: 2% 0;
 }
 
-.main-container {
-    align-items: center;
-    display: flex;
-    flex-direction: row;
-    margin: 3% 7% 3% 7%;
-}
-
+.main-container,
 .intro {
-    height: 20vh;
-    margin: 3% 7% 3% 7%;
     display: flex;
     flex-direction: row;
+    margin: 3% 7%;
 }
 
 .company-container,
 .student-container {
-    margin: 1% 5% 1% 5%;
-    width: 50%;
-    padding: 90px 0 90px 0;
-    height: 300px;
+    margin: 1% 5%;
+    width: 100%;
+    padding: 90px 0;
     display: flex;
     align-items: center;
     flex-direction: column;
     background-color: aliceblue;
+    transition: all 250ms;
 }
 
 .company-container:hover,
@@ -49,36 +45,22 @@ body {
     background-color: rgb(225, 240, 253);
 }
 
-.student-login-btn,
-.company-login-btn {
-    padding-top: 30px;
-}
-
-button {
+/* Button Styles */
+button,
+.below-form button,
+.form-container button {
     align-items: center;
     background-color: #FFFFFF;
     border: 2px solid rgba(0, 0, 0, 0.368);
     border-radius: .25rem;
-    box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
-    box-sizing: border-box;
     color: rgba(0, 0, 0, 0.85);
     cursor: pointer;
     display: inline-flex;
-    font-family: system-ui, -apple-system, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 16px;
     font-weight: 600;
     justify-content: center;
-    line-height: 1.25;
-    margin: 0;
-    min-height: 3rem;
-    padding: calc(.875rem - 1px) calc(1.5rem - 1px);
-    position: relative;
-    text-decoration: none;
+    padding: 0.875rem 1.5rem;
     transition: all 250ms;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    vertical-align: baseline;
     width: auto;
 }
 
@@ -93,141 +75,82 @@ button:hover {
     transform: translateY(-1px);
 }
 
-button:active {
-    background-color: #F0F0F1;
-    border-color: rgba(0, 0, 0, 0.15);
-    box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
-    color: rgb(0, 0, 0);
-    transform: translateY(0);
-}
-
-/* Update footer and navigation links */
+/* Footer & Navigation shared properties */
 footer, nav {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     padding: 1rem;
     background-color: #007bff;
     color: #fff;
-  }
-  
-  nav ul {
+}
+
+nav {
+    justify-content: space-between; /* Adjusts for more space between logo and menu items */
+}
+
+nav .logo {
+    flex: 1;
+    text-align: left;
+}
+
+nav ul {
     display: flex;
+    flex: 2;
     list-style: none;
-  }
-  
-  nav li {
-    padding: 0 1rem;
-  }
-  
-  nav a, footer a {
+    justify-content: space-evenly; /* Distribute space between items evenly */
+}
+
+nav li {
+    margin: 0 0.5rem;
+}
+
+nav a, footer a {
     color: #fff;
     text-decoration: none;
     padding: 8px 16px;
     border-radius: 20px;
-    transition: background-color 0.3s;
-  }
-  
-  nav a:hover, footer a:hover {
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+nav a:hover, footer a:hover {
     background-color: #0056b3;
-  }
-  
-input,
-select {
+}
+
+nav a:active {
+    background-color: #003c7c; /* Darker shade when link is clicked */
+}
+
+input, select {
     width: 100%;
     padding: 12px 15px;
     margin: 8px 0;
-    box-sizing: border-box;
 }
 
-.form-container {
-    margin: 5% 35% 2% 35%;
-    border: 1px solid black;
-    background-color: rgb(241, 241, 241);
-    padding: 20px 20px 20px 20px;
-    border-radius: 10px;
-}
-
+.form-container,
 .form-container-register {
-    margin: 5% 25% 2% 25%;
+    margin: 5% 5%;
     border: 1px solid black;
     background-color: rgb(241, 241, 241);
-    padding: 20px 20px 20px 20px;
+    padding: 20px;
     border-radius: 10px;
 }
 
-.header {
-    margin-top: 4%;
-    margin-bottom: 2%;
-    text-align: center;
-}
-
-.sub-header {
-    text-align: center;
-}
-
-.below-form {
-    text-align: center;
-}
-
-/* Update button styles */
 .below-form button, .form-container button {
     margin-top: 20px;
     width: 100%;
     background-color: #007bff;
     border: none;
-    border-radius: 5px;
-    color: #fff;
-    font-size: 16px;
-    font-weight: 600;
-    padding: 10px 20px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .below-form button:hover, .form-container button:hover {
-    background-color: #0056b3;
-  }
-/* Update footer and navigation links */
-footer, nav {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 1rem;
-    background-color: #007bff;
-    color: #fff;
-  }
-  
-  nav ul {
-    display: flex;
-    list-style: none;
-  }
-  
-  nav li {
-    padding: 0 1rem;
-  }
-  
-  nav a, footer a {
-    color: #fff;
-    text-decoration: none;
-    padding: 8px 16px;
-    border-radius: 20px;
-    transition: background-color 0.3s;
-  }
-  
-  nav a:hover, footer a:hover {
-    background-color: #0056b3;
-  }
+}
 
 img {
     height: 80px;
 }
 
 .icon-tab {
-    width: 280px;
+    width: 100%;
     text-align: center;
     padding-top: 10px;
-    height: 150px;
 }
 
 button[type=submit] {
@@ -236,144 +159,19 @@ button[type=submit] {
     margin-left: 25%;
 }
 
-.job-card {
-    margin: 50px 300px 50px 300px;
-    padding: 50px 50px 50px 50px;
-    border: 2px solid black;
-    background-color:aliceblue
-}
-
-.profile-body {
-    margin: 5% 25% 5% 25%;
-    padding: 20px 20px 20px 20px;
-    background-color: rgb(238, 238, 238);
+.job-card, .profile-body {
+    margin: 5% 5%;
+    padding: 20px;
     border: 1px solid black;
-    /* border-radius: 8px; */
-}
-
-.btn-container {
-    margin: 5% 25% 5% 25%;
+    background-color: aliceblue;
 }
 
 .error-mssg {
-
-    margin: 2% 35% 2% 35%;
-    padding: 5px 5px 5px 5px;
+    margin: 2% 5%;
+    padding: 5px;
     text-align: center;
     background-color: rgb(255, 255, 255);
     color: rgb(255, 0, 0);
-}
-
-.active {
-    background-color: white;
-    color: rgb(0, 0, 0);
-    border-radius: 20px;
-    height: 100%;
-}
-
-.text-center {
-    margin-top: 5%;
-    text-align: center;
-    color: red;
-}
-
-label {
-    display: inline-flex;
-    justify-content: space-between;
-    flex-direction: column;
-    align-items: center;
-    padding-right: 50px;
-}
-
-.container {
-    display: block;
-    position: relative;
-    padding-left: 35px;
-    margin-bottom: 12px;
-    cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
-/* Hide the browser's default checkbox */
-.container input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-    height: 0;
-    width: 0;
-}
-
-/* Create a custom checkbox */
-.checkmark {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 15px;
-    width: 15px;
-    background-color: #eee;
-    border: 1px solid black;
-}
-
-/* On mouse-over, add a grey background color */
-.container:hover input~.checkmark {
-    background-color: #ccc;
-}
-
-/* When the checkbox is checked, add a blue background */
-.container input:checked~.checkmark {
-    background-color: #2196F3;
-}
-
-/* Create the checkmark/indicator (hidden when not checked) */
-.checkmark:after {
-    content: "";
-    position: absolute;
-    display: none;
-}
-
-/* Show the checkmark when checked */
-.container input:checked~.checkmark:after {
-    display: block;
-}
-
-/* Style the checkmark/indicator */
-.container .checkmark:after {
-    left: 5px;
-    top: 1px;
-    width: 2px;
-    height: 7px;
-    border: solid white;
-    border-width: 0 3px 3px 0;
-    -webkit-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    transform: rotate(45deg);
-}
-
-#delete{
-    background-color: rgba(255, 0, 0, 1);
-    color: white;
-}
-
-#edit {
-    background-color: rgba(0, 195, 255, 1);
-    color: white;
-}
-
-#delete:hover {
-    background-color: rgba(255, 0, 0, 0.502);
-    color: white;
-}
-
-#edit:hover {
-    background-color: rgba(0, 195, 255, 0.502);
-    color: white
-}
-
-footer {
-    margin-bottom: 0px;
 }
 
 .side-bar-container {
@@ -382,25 +180,64 @@ footer {
 }
 
 .filter-form {
-    margin: 1% 35% 1% 35%;
+    margin: 1% 5%;
     background-color: aliceblue;
     border: 1px solid black;
     padding: 1%;
 }
-.filter-tags-container{
+
+.filter-tags-container, .btn-container {
     display: flex;
     flex-direction: row;
     justify-content: center;
 }
 
-.filter-tags{
-    background-color:aliceblue;
-    padding: 1%;
-    margin: 1%;
+/* Responsive Navbar for smaller devices */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav li {
+        margin-bottom: 0.5rem;
+    }
 }
 
-.btn-container{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+/* Media Queries for larger screens */
+@media (min-width: 768px) {
+    .main-container,
+    .intro {
+        margin: 3% 7%;
+    }
+  
+    .company-container,
+    .student-container {
+        width: 50%;
+    }
+  
+    .form-container {
+        margin: 5% 35%;
+    }
+  
+    .form-container-register {
+        margin: 5% 25%;
+    }
+  
+    .job-card {
+        margin: 5% 20%;
+    }
+  
+    .profile-body {
+        margin: 5% 25%;
+    }
+  
+    .error-mssg {
+        margin: 2% 35%;
+    }
+  
+    .filter-form {
+        margin: 1% 35%;
+    }
 }
+`
