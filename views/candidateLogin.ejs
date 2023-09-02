@@ -1,12 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ClubDen | Student</title>
     <link rel="stylesheet" href="/css/style.css">
+    <script>
+        function validateEmail() {
+            const emailField = document.querySelector("[name='email']");
+            if (!emailField.value.endsWith("@srmist.edu.in")) {
+                alert("Please use an email ending with @srmist.edu.in");
+                return false;
+            }
+            return true;
+        }
+    </script>
 </head>
+
 <body>
     <section>
         <nav>
@@ -23,25 +35,23 @@
             <h1>Candidate Login</h1>
         </div>
     </section>
-     
+
     <section>
         <div class="form-container">
             <div class="icon-container">
                 <img src="/img/candidate.gif" style="height:150px">
             </div>
-            <form action="/candidateLogin" method="post">
-                <input type="email" name="email" placeholder="Email ID" required>
+            <form action="/candidateLogin" method="post" onsubmit="return validateEmail();">
+                <input type="email" name="email" placeholder="Email ID (use @srmist.edu.in)" required>
                 <input type="password" name="password" placeholder="Password" required>
                 <button type="submit" name="submit">Login</button>
             </form>
-            <br>  
+            <br>
             <hr>
             <br>
             <div class="below-form">
-                <h5>Haven't registered yet?  <a href="/candidateSignup">Sign Up</a></h5>
-                
-                <!-- <button onclick="window.location.href = '/candidateSignup';">Register</button> -->
-            </div> 
+                <h5>Haven't registered yet? <a href="/candidateSignup">Sign Up</a></h5>
+            </div>
         </div>
     </section>
     <div class="error-mssg">
@@ -51,12 +61,13 @@
     </div>
     <hr>
     <section>
-        
+
     </section>
 </body>
+
 <footer>
     <div class="copyright">
-        <p>Copyright &copy;  2023 ClubDenβ Version. All rights reserved to the Developers Love, Uday & Shaurya</p>
+        <p>Copyright &copy; 2023 ClubDenβ Version. All rights reserved to the Developers Love, Uday & Shaurya</p>
     </div>
 </footer>
 
