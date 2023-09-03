@@ -13,7 +13,16 @@
     <section>
         <nav>
             <img src="/img/logo.png" alt="ClubDen">
-            <ul class="left">
+            
+            <!-- Hamburger Menu Icon -->
+            <div class="menu-toggle">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <!-- End of Hamburger Menu Icon -->
+
+            <ul class="nav-list left">
                 <li><a class="active" href="/candidateHome">User Privacy</a></li>
                 <li><a href="/searchJobs">Search Current Club Openings</a></li>
                 <li><a href="/updateCandidate">Edit Profile</a></li>
@@ -30,6 +39,7 @@
         </div>
         <% var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }; %> 
         <div class="profile-body">
+            <!-- ... your existing content ... -->
             <h3>Personal Details</h3>
             <br>
             <p>First name : <%= firstname %></p>
@@ -61,37 +71,37 @@
             <br>
             <p>Resume : <%=resume %></p>
             <br>
-
-            <form action="/logoutCandidate?_method=DELETE" method="POST">
-                <button type="submit">Log Out</button>
-            </form>
-        </div>
-
-        <div class="">
-            <!-- <button onclick="window.location.href = '/';">Add a new Job</button> -->
-            <form action="/candidateHome" method="post">
-                <button type="submit" id="delete-btn">Delete Account</button>
-            </form>
-            <!-- <button onclick="window.location.href = '/';">My Jobs</button> -->
         </div>
         <br>
         <br>
         <div id="company">
-
+            <!-- ... your existing content ... -->
+            <form action="/logoutCandidate?_method=DELETE" method="POST">
+                <button type="submit">Log Out</button>
+            </form>
         </div>
     </section>
-    <script type="text/javascript">
+
+    <script>
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navList = document.querySelector('.nav-list');
+
+        menuToggle.addEventListener('click', () => {
+            navList.classList.toggle('active');
+        });
+
         document.getElementById("delete-btn").addEventListener("click", function () {
             if (!confirm("Are you sure you want to delete your account?")){
                 event.preventDefault();
             }
         }); 
     </script>
+
 </body>
 
 <footer>
     <div class="copyright">
-        <p>Copyright &copy;  2023 ClubDenβ Version. All rights reserved to the Developers Love, Uday & Shaurya</p>
+        <p>Copyright &copy; 2023 ClubDenβ Version. All rights reserved to the Developers Love, Uday & Shaurya</p>
     </div>
 </footer>
 
