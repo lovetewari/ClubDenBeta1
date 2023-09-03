@@ -23,7 +23,16 @@
     <section>
         <nav>
             <img src="/img/logo.png" alt="ClubDen">
-            <ul class="left">
+
+            <!-- Hamburger Menu Icon -->
+            <div class="menu-toggle">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <!-- End of Hamburger Menu Icon -->
+
+            <ul class="nav-list left">
                 <li><a href="/">Home</a></li>
                 <li><a href="/allJobs">Current Club Openings</a></li>
                 <li><a href="/allEmployers">Club Details</a></li>
@@ -63,6 +72,14 @@
     <section>
 
     </section>
+    <script>
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navList = document.querySelector('.nav-list');
+
+        menuToggle.addEventListener('click', () => {
+            navList.classList.toggle('active');
+        });
+    </script>
 </body>
 
 <footer>
