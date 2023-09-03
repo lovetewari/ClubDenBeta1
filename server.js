@@ -71,6 +71,7 @@ const employerSchema = new mongoose.Schema({
 
 const jobSchema = new mongoose.Schema({
     company_id: String,
+    company_name: String,
     position: String,
     batches: [Number],
     degrees: [String],
@@ -109,26 +110,25 @@ app.get('/', (req, res) => {
     });
 });
 
-app.get('/allJobs', (req, res) => {
+app.get('/allJobs', async (req, res) => {
+    try {
+        let jobs = await Job.find({});
+        const jobsWithCompanyNames = await Promise.all(jobs.map(async (job) => {
+            const employer = await Employer.findById(job.company_id);
+            if (employer) {
+                job.company_name = employer.name;
+            }
+            return job;
+        }));
+        res.render('allJobs.ejs', { job: jobsWithCompanyNames });
+        
 
-    Job.find({}, function (err, job) {
+    } catch (error) {
+        console.error("Error fetching jobs:", error);
+        res.status(500).send("Internal Server Error");
+    }
+});
 
-        for (let i = 0; i < job.length; i++) {
-
-            //console.log(job[i].company_id);
-            Employer.findOne({'id': job[i].company_id}, function (err, employer) {
-                if (err) { console.log(err); }
-                // console.log(employer.name + ' ' + i + ' ' + job[i].company_id);
-                job[i].company_id = employer.name;
-            })
-        }
-        //console.log(job);
-        res.render('allJobs.ejs', {job});
-    })
-
-    //console.log("ARRAY " + allJobs.length + " " + allJobs + " " + typeof(allJobs));
-    
-})
 
 app.get('/allEmployers', (req, res) => {
 
@@ -284,14 +284,27 @@ app.post('/searchJobs', checkAuthenticatedCandidate, (req, res) => {
     })
 })
 
-app.get('/myJobs', checkAuthenticatedEmployer, (req, res) => {
+app.get('/myJobs', checkAuthenticatedEmployer, async (req, res) => {
+    try {
+        let jobs = await Job.find({ company_id: req.user });
 
-    Job.find({ company_id: req.user }, function (err, job) {
-        if (err) {console.log(err);}
-        res.render('myJobs.ejs', {job});
-    });
-    
-})
+        const jobsWithCompanyNames = await Promise.all(jobs.map(async (job) => {
+            const employer = await Employer.findById(job.company_id);
+            if (employer) {
+                // Combine the job data with the company name into a new object
+                return {...job._doc, company_name: employer.name};
+            }
+            return job._doc;  // If no employer is found, return the job as is
+        }));
+
+        res.render('myJobs.ejs', { job: jobsWithCompanyNames });
+    } catch (error) {
+        console.error("Error fetching jobs:", error);
+        res.status(500).send("Internal Server Error");
+    }
+});
+
+
 
 app.get('/employerHome', checkAuthenticatedEmployer, (req, res) => {
 
