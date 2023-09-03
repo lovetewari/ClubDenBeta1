@@ -13,7 +13,16 @@
     <section>
         <nav>
             <img src="/img/logo.png" alt="ClubDen">
-            <ul class="left">
+            
+            <!-- Hamburger Menu Icon -->
+            <div class="menu-toggle">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <!-- End of Hamburger Menu Icon -->
+            
+            <ul class="nav-list left">
                 <li><a href="/">Home</a></li>
                 <li><a href="/allJobs">Current Club Openings</a></li>
                 <li><a href="/allEmployers">Club Details</a></li>
@@ -22,7 +31,7 @@
     </section>
     <section>
         <div class="header">
-            <h1>Offical Club Member Login</h1>
+            <h1>Official Club Member Login</h1>
         </div>
     </section>
     <section>
@@ -39,24 +48,32 @@
             <hr>
             <br>
             <div class="below-form">
-                <h5>Haven't registed yet? <a href="/employerSignup">Sign Up</a></h5>
+                <h5>Haven't registered yet? <a href="/employerSignup">Sign Up</a></h5>
             </div>
         </div>
     </section>
     <div class="error-mssg">
         <% if (messages.error) { %>
             <%= messages.error %>
-                <% } %>
+        <% } %>
     </div>
     <hr>
     <section>
     </section>
     <script src="./companyLogin.js"></script>
+    <script type="text/javascript">
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navList = document.querySelector('.nav-list');
+
+        menuToggle.addEventListener('click', () => {
+            navList.classList.toggle('active');
+        });
+    </script>
 </body>
 
 <footer>
     <div class="copyright">
-        <p>Copyright &copy;  2023 ClubDenβ Version. All rights reserved to the Developers Love, Uday & Shaurya</p>
+        <p>Copyright &copy; 2023 ClubDenβ Version. All rights reserved to the Developers Love, Uday & Shaurya</p>
     </div>
 </footer>
 
