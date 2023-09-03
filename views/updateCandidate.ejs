@@ -13,6 +13,14 @@
     <section>
         <nav>
             <img src="/img/logo.png" alt="ClubDen">
+
+            <!-- Hamburger Menu Icon -->
+            <div class="menu-toggle" id="mobile-menu">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+
             <ul class="left">
                 <li><a href="/candidateHome">User Privacy</a></li>
                 <li><a href="/searchJobs">Search Current Club Openings</a></li>
@@ -20,6 +28,7 @@
             </ul>
         </nav>
     </section>
+
     <section>
         <div class="header">
             <h1>Edit Profile</h1>
@@ -27,11 +36,9 @@
     </section>
 
     <section>
-
         <div class="form-container">
             <form action="/updateCandidate" method="post">
                 <div class="student-signup-form">
-
                     <div class="">
                         <h3>Personal Details</h3>
                         <br>
@@ -53,38 +60,38 @@
                         <br>
                         <div class="radio-checkbox-container">
                             <p>Gender</p>
-                            <label> <input type="radio" id="male" name="gender" value="Male" required> <span>Male</span></label>
-                            <label> <input type="radio" id="female" name="gender" value="Female" required> <span>Female</span></label>
-                            <label> <input type="radio" id="other" name="gender" value="Other" required> <span>Other</span></label>
+                            <label><input type="radio" id="male" name="gender" value="Male" required> <span>Male</span></label>
+                            <label><input type="radio" id="female" name="gender" value="Female" required> <span>Female</span></label>
+                            <label><input type="radio" id="other" name="gender" value="Other" required> <span>Other</span></label>
                         </div>
-                    <br>
-                    <hr>
-                    <br>
-                    <div>
-                        <h3>Educational Details</h3>
-                        <input type="text" name="college" placeholder="College" id="c6" required value="<%= college %>">
-                        <select name="degree" id="degree" required>
-                            <option value="" disabled selected>Select degree</option>
-                            <option value="BTech"> BTech </option>
-                            <option value="BE"> BE </option>
-                            <option value="BSc"> BSc </option>
-                            <option value="MTech"> MTech </option>
-                            <option value="MSc"> Msc </option>
-                            <option value="MBA"> MBA </option>
-                        </select>
-                        <input type="number" step=".01" name="cpi" placeholder="Current CPI out of 10" id="c8" max="10" min="0" required value="<%= cpi %>">
-                        <input type="number" name="batch" step="1" max="2030" min="2012" id="c9" placeholder="Year of completion" value="<%= batch %>" required>
+                        <br>
+                        <hr>
+                        <br>
+                        <div>
+                            <h3>Educational Details</h3>
+                            <input type="text" name="college" placeholder="College" id="c6" required value="<%= college %>">
+                            <select name="degree" id="degree" required>
+                                <option value="" disabled selected>Select degree</option>
+                                <option value="BTech"> BTech </option>
+                                <option value="BE"> BE </option>
+                                <option value="BSc"> BSc </option>
+                                <option value="MTech"> MTech </option>
+                                <option value="MSc"> Msc </option>
+                                <option value="MBA"> MBA </option>
+                            </select>
+                            <input type="number" step=".01" name="cpi" placeholder="Current CPI out of 10" id="c8" max="10" min="0" required value="<%= cpi %>">
+                            <input type="number" name="batch" step="1" max="2030" min="2012" id="c9" placeholder="Year of completion" value="<%= batch %>" required>
+                        </div>
+                        <br>
+                        <hr>
+                        <br>
+                        <label for="resume">Upload Resume</label>
+                        <input type="file" id="resume" name="resume" value="<%= resume %>" required>
+                        <br>
+                        <label for="skills">Skills</label>
+                        <input type="textarea" placeholder="Skills" value="<%= skills %>" name="skills" id="skills">
+                        <button type="submit">Update</button>
                     </div>
-                    <br>
-                    <hr>
-                    <br>
-                    <label for="resume">Upload Resume</label>
-                    <input type="file" id="resume" name="resume" value="<%= resume %>" required>
-                    <br>
-                    <label for="skills">Skills</label>
-                    <input type="textarea" placeholder="Skills" value="<%= skills %>" name="skills" id="skills">
-                    <button type="submit">Update</button>
-
                 </div>
             </form>
         </div>
@@ -92,12 +99,20 @@
     <hr>
 
     <script src="./companySignup.js"></script>
-</body>
 
-<footer>
-    <div class="copyright">
-        <p>Copyright &copy;  2023 ClubDenβ Version. All rights reserved to the Developers Love, Uday & Shaurya</p>
-    </div>
-</footer>
+    <script>
+        const mobileMenuButton = document.getElementById('mobile-menu');
+        const navList = document.querySelector('.left');
+
+        mobileMenuButton.addEventListener('click', () => {
+            navList.classList.toggle('active');
+        });
+    </script>
+
+    <footer>
+        <div class="copyright">
+            <p>Copyright &copy; 2023 ClubDenβ Version. All rights reserved to the Developers Love, Uday & Shaurya</p>
+        </div>
+    </footer>
 
 </html>
