@@ -13,7 +13,16 @@
     <section>
         <nav>
             <img src="/img/logo.png" alt="ClubDen">
-            <ul class="left">
+
+            <!-- Hamburger Menu Icon -->
+            <div class="menu-toggle">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <!-- End of Hamburger Menu Icon -->
+
+            <ul class="nav-list left">
                 <li><a href="/">Home</a></li>
                 <li><a href="/allJobs">Current Club Openings</a></li>
                 <li><a class="active" href="/allEmployers">Club Details</a></li>
@@ -30,7 +39,7 @@
     <section>
         <div class="job-cards-containers" id="job">
             <div class="job-card" >
-                <% for (var i = 0; i <employer.length; i++) {        %> 
+                <% for (var i = 0; i < employer.length; i++) { %> 
                     <p>Club Name: <%= employer[i].name %> </p>
                     <br>
                     <p>Email: <%= employer[i].email %> </p> 
@@ -39,21 +48,28 @@
                     <br>
                     <p>Description: <%= employer[i].description %> </p> 
                     <br>
-                    <% if (i!=employer.length-1) {%> 
+                    <% if (i != employer.length-1) {%> 
                         <hr>
                     <% } %> 
                     <br>
-                    <% } %> 
+                <% } %> 
             </div>
-
         </div>
     </section>
+    <script>
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navList = document.querySelector('.nav-list');
+
+        menuToggle.addEventListener('click', () => {
+            navList.classList.toggle('active');
+        });
+    </script>
     <script src="./allJobs.js"></script>
 </body>
 
 <footer>
     <div class="copyright">
-        <p>Copyright &copy;  2023 ClubDenβ Version. All rights reserved to the Developers Love, Uday & Shaurya</p>
+        <p>Copyright &copy; 2023 ClubDenβ Version. All rights reserved to the Developers Love, Uday & Shaurya</p>
     </div>
 </footer>
 
