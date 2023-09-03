@@ -13,7 +13,16 @@
     <section>
         <nav>
             <img src="/img/logo.png" alt="ClubDen">
-            <ul class="left">
+            
+            <!-- Hamburger Menu Icon -->
+            <div class="menu-toggle">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <!-- End of Hamburger Menu Icon -->
+
+            <ul class="nav-list left">
                 <li><a href="/employerHome">Profile</a></li>
                 <li><a href="/myJobs">Current Openings</a></li>
                 <li><a class="active" href="/addJob">Add Club Openings</a></li>
@@ -79,18 +88,24 @@
                 
                 <label for="l7" class="container"> Online Interview(Prefer Gmeet) <input type="checkbox" id="l7" name="location" value="Online Interview(Prefer Gmeet)"><span class="checkmark"></span></label><br>
 
-
-
                 <button type="submit">Submit</button>
             </form>
         </div>
     </section>
-</body>
 
-<footer>
-    <div class="copyright">
-        <p>Copyright &copy;  2023 ClubDenβ Version. All rights reserved to the Developers Love, Uday & Shaurya</p>
-    </div>
-</footer>
+    <script>
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navList = document.querySelector('.nav-list');
+
+        menuToggle.addEventListener('click', () => {
+            navList.classList.toggle('active');
+        });
+    </script>
+
+    <footer>
+        <div class="copyright">
+            <p>Copyright &copy; 2023 ClubDenβ Version. All rights reserved to the Developers Love, Uday & Shaurya</p>
+        </div>
+    </footer>
 
 </html>
