@@ -13,7 +13,16 @@
     <section>
         <nav>
             <img src="/img/logo.png" alt="ClubDen">
-            <ul class="left">
+
+            <!-- Hamburger Menu Icon -->
+            <div class="menu-toggle">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <!-- End of Hamburger Menu Icon -->
+
+            <ul class="nav-list left">
                 <li><a href="/candidateHome">User Privacy</a></li>
                 <li><a class="active" href="/searchJobs">Search Current Club Openings</a></li>
                 <li><a href="/updateCandidate">Edit Profile</a></li>
@@ -160,6 +169,15 @@
         </div>
     </footer>
     <script src="./allJobs.js"></script>
+    <!-- JavaScript for Hamburger Menu -->
+    <script>
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navList = document.querySelector('.nav-list');
+
+        menuToggle.addEventListener('click', () => {
+            navList.classList.toggle('active');
+        });
+    </script>
 </body>
 
 </html>
