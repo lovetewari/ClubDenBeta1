@@ -13,7 +13,15 @@
     <section>
         <nav>
             <img src="/img/logo.png" alt="ClubDen">
-            <ul class="left">
+            
+            <!-- Hamburger Menu Icon -->
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            
+            <ul class="left nav-list">
                 <li><a href="/employerHome">Profile</a></li>
                 <li><a class="active" href="/myJobs">Current Openings</a></li>
                 <li><a href="/addJob">Add Club Openings</a></li>
@@ -21,6 +29,7 @@
             </ul>
         </nav>
     </section>
+    
     <section>
         <div class="header">
             <h1>Update Club Recruitment Application</h1>
@@ -61,14 +70,21 @@
             </form>
         </div>
     </section>
-    <hr>
-    <script src="./companySignup.js"></script>
-</body>
+    <script>
+        const mobileMenuButton = document.getElementById('mobile-menu');
+        const navList = document.querySelector('.nav-list');
 
-<footer>
-    <div class="copyright">
-        <p>Copyright &copy;  2023 ClubDenβ Version. All rights reserved to the Developers Love, Uday & Shaurya</p>
-    </div>
-</footer>
+        mobileMenuButton.addEventListener('click', () => {
+            navList.classList.toggle('active');
+        });
+    </script>
+
+    <script src="./companySignup.js"></script>
+
+    <footer>
+        <div class="copyright">
+            <p>Copyright &copy; 2023 ClubDenβ Version. All rights reserved to the Developers Love, Uday & Shaurya</p>
+        </div>
+    </footer>
 
 </html>
