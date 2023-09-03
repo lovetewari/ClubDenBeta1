@@ -13,7 +13,16 @@
     <section>
         <nav>
             <img src="/img/logo.png" alt="ClubDen">
-            <ul class="left">
+            
+            <!-- Hamburger Menu Icon -->
+            <div class="menu-toggle">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <!-- End of Hamburger Menu Icon -->
+
+            <ul class="nav-list left">
                 <li><a class="active" href="/employerHome">Profile</a></li>
                 <li><a href="/myJobs">Current Openings</a></li>
                 <li><a href="/addJob">Add Club Openings</a></li>
@@ -27,22 +36,17 @@
             <h1>Club Home page</h1>
             <br>
             <br>
-            <h3>Welcome back, <%= name %>
-            </h3>
+            <h3>Welcome back, <%= name %></h3>
         </div>
 
         <div class="profile-body">
-            <p>Club Name: <%= name %>
-            </p>
+            <p>Club Name: <%= name %></p>
             <br>
-            <p>Email: <%= email %>
-            </p>
+            <p>Email: <%= email %></p>
             <br>
-            <p>Website <%= website %>
-            </p>
+            <p>Website <%= website %></p>
             <br>
-            <p>Description: <%= description %>
-            </p>
+            <p>Description: <%= description %></p>
             <br>
 
             <form action="/logoutEmployer?_method=DELETE" method="POST">
@@ -55,7 +59,7 @@
             <form action="/employerHome" method="post">
                 <button type="submit" id="delete-btn">Delete Account</button>
             </form>
-            <p class="text-center">Note: Deleting your account will remove all your added Club Openings use this feature when club is No More Active in the Organization.</p>
+            <p class="text-center">Note: Deleting your account will remove all your added Club Openings. Use this feature when the club is no longer active in the organization.</p>
             <!-- <button onclick="window.location.href = '/';">My Jobs</button> -->
         </div>
         <br>
@@ -64,13 +68,22 @@
 
         </div>
     </section>
+
     <script type="text/javascript">
         document.getElementById("delete-btn").addEventListener("click", function () {
             if (!confirm("Are you sure you want to delete your account?")){
                 event.preventDefault();
             }
-        }); 
+        });
+
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navList = document.querySelector('.nav-list');
+
+        menuToggle.addEventListener('click', () => {
+            navList.classList.toggle('active');
+        });
     </script>
+
 </body>
 
 <footer>
