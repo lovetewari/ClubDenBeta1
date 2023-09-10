@@ -19,6 +19,7 @@
                 <div class="bar"></div>
                 <div class="bar"></div>
                 <div class="bar"></div>
+                <div class="bar"></div>
             </div>
             <!-- End of Hamburger Menu Icon -->
 
@@ -27,6 +28,7 @@
                 <li><a class="active" href="/myJobs">Current Openings</a></li>
                 <li><a href="/addJob">Add Club Openings</a></li>
                 <li><a href="/updateEmployer">Edit Profile</a></li>
+                <li><a href="https://srm-clubs.vercel.app/">SRM Nexus</a></li>
             </ul>
         </nav>
     </section>
@@ -72,11 +74,15 @@
                     <br>
                     <div class="btn-container">
                         <form action="/updateJob" method="get">
+                            <input type="hidden" name="jobId" value="<%= job[i]._id %>">
                             <button type="submit" id="edit"> Edit </button>
                         </form>
-                        <form action="/" method="get">
-                            <button type="submit" id="delete"> Delete </button>
+                        
+                        <form action="/deleteJob" method="POST">
+                            <input type="hidden" name="jobId" value="<%= job[i]._id %>">
+                            <button type="submit" id="delete">Delete</button> 
                         </form>
+                        
                     </div>
                     <% if (i!=job.length-1) {%> 
                         <hr>
@@ -105,4 +111,5 @@
 </body>
 
 </html>
+
 
