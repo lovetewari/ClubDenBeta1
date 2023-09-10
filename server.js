@@ -240,6 +240,18 @@ app.post('/updateCandidate', checkAuthenticatedCandidate, (req, res) => {
     })
 })
 
+app.post('/deleteCandidate', checkAuthenticatedCandidate, (req, res) => {
+    Candidate.deleteOne({ _id: req.user }, function (err, candidate) {
+        if (err) {
+            console.log(err);
+            return res.status(500).send("Internal Server Error");
+        } 
+        req.logOut();
+        res.redirect('/');
+    });
+});
+
+
 app.post('/searchJobs', checkAuthenticatedCandidate, (req, res) => {
 
     // if (req.body.location != null)
