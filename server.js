@@ -187,6 +187,27 @@ app.post('/updateEmployer', checkAuthenticatedEmployer, (req, res) => {
     })
 })
 
+app.post('/deleteJob', checkAuthenticatedEmployer, async (req, res) => {
+    try {
+        const jobId = req.body.jobId; // Get job ID from the request body
+
+        if (!jobId) {
+            return res.status(400).send('Job ID is required');
+        }
+
+        // Delete the job from the database
+        await Job.findByIdAndDelete(jobId);
+
+        // Redirect to the list of current job postings
+        res.redirect('/myJobs');
+    } catch (error) {
+        console.error("Error deleting job:", error);
+        res.status(500).send("Internal Server Error");
+    }
+});
+
+
+
 app.get('/updateJob', checkAuthenticatedEmployer, (req, res) => {
 
     // Employer.findOne({ '_id': req.user }, function (err, employer) {
