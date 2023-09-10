@@ -19,6 +19,7 @@
                 <div class="bar"></div>
                 <div class="bar"></div>
                 <div class="bar"></div>
+                <div class="bar"></div>
             </div>
             <!-- End of Hamburger Menu Icon -->
 
@@ -26,32 +27,47 @@
                 <li><a href="/">Home</a></li>
                 <li><a href="/allJobs">Current Club Openings</a></li>
                 <li><a class="active" href="/allEmployers">Club Details</a></li>
+                <li><a href="https://srm-clubs.vercel.app/">SRM Nexus</a></li>
             </ul>
         </nav>
     </section>
 
     <section>
-        <div class="header">
-            <h1>Clubs Live Right Now</h1>
+        <div class="header" style="background-color: #f8f9fa; padding: 20px; border-bottom: 2px solid #dee2e6;">
+            <h1 style="font-size: 2em; text-align: center; color: #343a40;">Clubs Live Right Now</h1>
         </div>
     </section>
 
     <section>
         <div class="job-cards-containers" id="job">
-            <div class="job-card" >
+            <div class="job-card" style="max-height: 600px; overflow-y: auto; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
                 <% for (var i = 0; i < employer.length; i++) { %> 
-                    <p>Club Name: <%= employer[i].name %> </p>
-                    <br>
-                    <p>Email: <%= employer[i].email %> </p> 
-                    <br>
-                    <p>Website: <%= employer[i].website %> </p> 
-                    <br>
-                    <p>Description: <%= employer[i].description %> </p> 
-                    <br>
+                    <div style="display: flex; align-items: flex-start; margin-bottom: 20px; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+                        <div style="padding: 10px; background-color: #f0f0f0; border-radius: 5px; width: 50px; text-align: center; margin-right: 20px;">
+                            <%= i + 1 %>
+                        </div>
+                        <div>
+                            <p style="margin-bottom: 10px;"><strong>Club Name:</strong> <%= employer[i].name %> </p>
+                            <p style="margin-bottom: 10px;"><strong>Email:</strong> 
+                              <% if (employer[i].email) { %>
+                                <a href="mailto:<%= employer[i].email %>"><%= employer[i].email %></a>
+                              <% } else { %>
+                                Not Available
+                              <% } %>
+                            </p> 
+                            <p style="margin-bottom: 10px;"><strong>Website:</strong> 
+                              <% if (employer[i].website) { %>
+                                <a href="<%= employer[i].website %>" target="_blank"><%= employer[i].website %></a>
+                              <% } else { %>
+                                Not Available
+                              <% } %>
+                            </p> 
+                            <p style="margin-bottom: 10px;"><strong>Description:</strong> <%= employer[i].description %> </p> 
+                        </div>
+                    </div>
                     <% if (i != employer.length-1) {%> 
-                        <hr>
+                        <hr style="margin-bottom: 20px;">
                     <% } %> 
-                    <br>
                 <% } %> 
             </div>
         </div>
@@ -74,3 +90,4 @@
 </footer>
 
 </html>
+
