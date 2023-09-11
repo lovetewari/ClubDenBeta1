@@ -486,7 +486,6 @@ app.post('/candidateSignup', checkNotAuthenticatedCandidate, (req, res) => {
     }
 
 })
-
 app.post('/addJob', checkAuthenticatedEmployer, (req, res) => {
     const newJob = new Job({
         company_id: req.user,
@@ -495,13 +494,14 @@ app.post('/addJob', checkAuthenticatedEmployer, (req, res) => {
         degrees: req.body.degree.split(','),
         req_cpi: req.body.cpi,
         ctc: req.body.ctc,
-        Openings: req.body.openings ? parseInt(req.body.openings) : 0,
+        openings: req.body.openings ? parseInt(req.body.openings) : 0, // Changed 'Openings' to 'openings'
         apply: req.body.apply,
         location: req.body.location ? req.body.location.split(',') : ['Not specified'],
     });
     newJob.save();
     res.redirect('/employerHome');
 });
+
 
 
 app.delete('/logoutEmployer', (req, res) => {
