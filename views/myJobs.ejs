@@ -1,112 +1,98 @@
-    <!DOCTYPE html>
-    <html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>ClubDen | Home</title>
-        <link rel="stylesheet" href="/css/style.css">
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClubDen | Home</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
 
-    <body>
-        <section>
-            <nav>
-                <img src="/img/logo.png" alt="ClubDen">
+<body>
+    <section>
+        <nav>
+            <img src="/img/logo.png" alt="ClubDen">
 
-                <!-- Hamburger Menu Icon -->
-                <div class="menu-toggle">
-                    <div class="bar"></div>
-                    <div class="bar"></div>
-                    <div class="bar"></div>
-                    <div class="bar"></div>
-                </div>
-                <!-- End of Hamburger Menu Icon -->
-
-                <ul class="nav-list left">
-                    <li><a href="/employerHome">Profile</a></li>
-                    <li><a class="active" href="/myJobs">Current Openings</a></li>
-                    <li><a href="/addJob">Add Club Openings</a></li>
-                    <li><a href="/updateEmployer">Edit Profile</a></li>
-                </ul>
-            </nav>
-        </section>
-
-        <section>
-            <div class="header">
-                <h1>Club Active Recruitments</h1>
+            <!-- Hamburger Menu Icon -->
+            <div class="menu-toggle">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
             </div>
-        </section>
+            <!-- End of Hamburger Menu Icon -->
 
-        <section>
-            <div class="job-cards-containers" id="job">
-                <div class="job-card">
-                    <% for (var i=0; i <job.length; i++) { %>
-                        <br>
-                        <p> <b> Club name: </b> <%= job[i].company_name %> </p>
-                        <br>
-                        <p> <b>Position:</b>
-                            <%= job[i].position %>
-                        </p>
-                        <br>
-                        <p> <b> Degrees:</b>
-                            <%= job[i].degrees %>
-                        </p>
-                        <br>
-                        <p> <b> Passout years:</b>
-                            <%= job[i].batches %>
-                        </p>
-                        <br>
-                        <p> <b> Required CGPA out of 10: </b>
-                            <%= job[i].req_cpi %>
-                        </p>
-                        <br>
-                        <p> <b>Total Openings: </b>
-                            <%= job[i].Openings %>
-                        </p>
-                        <br>
-                        <p> <b> Interview Locations:</b>
-                            <%= job[i].location.join(', ') %> <!-- assuming location is an array -->
-                        </p>
-                        
-                        <br>
-                        <p> <b> Club apply URL: </b> <a id="link" href="<%= job[i].apply %>">Click here </a> %> </p>
-                        <br>
-                        <div class="btn-container">
-                            
-                            <form action="/deleteJob" method="POST">
-                                <input type="hidden" name="jobId" value="<%= job[i]._id %>">
-                                <button type="submit" id="delete">Delete</button> 
-                            </form>
-                            
-                        </div>
-                        <% if (i!=job.length-1) {%> 
-                            <hr>
-                        <% } %> 
-                        <br>
-                        <% } %>
-                </div>
+            <ul class="nav-list left">
+                <li><a href="/employerHome">Profile</a></li>
+                <li><a class="active" href="/myJobs">Current Openings</a></li>
+                <li><a href="/addJob">Add Club Openings</a></li>
+                <li><a href="/updateEmployer">Edit Profile</a></li>
+            </ul>
+        </nav>
+    </section>
+
+    <section>
+        <div class="header">
+            <h1>Club Active Recruitments</h1>
+        </div>
+    </section>
+
+    <section>
+        <div class="job-cards-containers" id="job">
+            <div class="job-card">
+                <% for (var i = 0; i < job.length; i++) { %>
+                    <br>
+                    <p> <b> Club name: </b> <%= job[i].company_name ? job[i].company_name : 'No data available' %> </p>
+                    <br>
+                    <p> <b>Position:</b> <%= job[i].position ? job[i].position : 'No data available' %> </p>
+                    <br>
+                    <p> <b> Degrees:</b> <%= job[i].degrees ? job[i].degrees.join(', ') : 'No data available' %> </p>
+                    <br>
+                    <p> <b> Passout years:</b> <%= job[i].batches ? job[i].batches.join(', ') : 'No data available' %> </p>
+                    <br>
+                    <p> <b> Required CGPA out of 10: </b> <%= job[i].req_cpi ? job[i].req_cpi : 'No data available' %> </p>
+                    <br>
+                    <p><b>Total Openings:</b> <%= job[i].openings ? job[i].openings : 'No data available' %></p>
+                    <br>
+                    <p><b>Interview Locations:</b> <%= job[i].location && job[i].location.length > 0 ? job[i].location.join(', ') : 'Not specified' %></p>
+                    
+                    <br>
+                    <p> <b> Club apply URL: </b> <a id="link" href="<%= job[i].apply %>">Click here </a> </p>
+                    <br>
+                    <div class="btn-container">
+                        <form action="/deleteJob" method="POST">
+                            <input type="hidden" name="jobId" value="<%= job[i]._id %>">
+                            <button type="submit" id="delete">Delete</button> 
+                        </form>
+                    </div>
+                    <% if (i != job.length - 1) { %> 
+                        <hr>
+                    <% } %> 
+                    <br>
+                <% } %>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <footer>
-            <div class="copyright">
-                <p>Copyright &copy; 2023 ClubDenβ Version. All rights reserved to the Developers Love, Uday & Shaurya</p>
-            </div>
-        </footer>
+    <footer>
+        <div class="copyright">
+            <p>Copyright &copy; 2023 ClubDenβ Version. All rights reserved to the Developers Love, Uday & Shaurya</p>
+        </div>
+    </footer>
 
-        <script src="./allJobs.js"></script>
-        <script type="text/javascript">
-            const menuToggle = document.querySelector('.menu-toggle');
-            const navList = document.querySelector('.nav-list');
+    <script src="./allJobs.js"></script>
+    <script type="text/javascript">
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navList = document.querySelector('.nav-list');
 
-            menuToggle.addEventListener('click', () => {
-                navList.classList.toggle('active');
-            });
-        </script>
-    </body>
+        menuToggle.addEventListener('click', () => {
+            navList.classList.toggle('active');
+        });
+    </script>
+</body>
 
-    </html>
+</html>
 
 
 
