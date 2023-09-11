@@ -72,14 +72,16 @@ const employerSchema = new mongoose.Schema({
 const jobSchema = new mongoose.Schema({
     company_id: String,
     company_name: String,
+    openings: { type: Number, default: 0 },
     position: String,
     batches: [Number],
     degrees: [String],
     req_cpi: Number,
     ctc: Number,
     apply: String,
-    location: [String]
+    location: { type: [String], default: ['Not specified'] },
 });
+
 
 const candidateSchema = new mongoose.Schema({
     firstname: String,
@@ -118,16 +120,19 @@ app.get('/allJobs', async (req, res) => {
             if (employer) {
                 job.company_name = employer.name;
             }
+            console.log("Job data:", job);  // Log each job data to inspect the values
             return job;
         }));
+        console.log(jobsWithCompanyNames);  // Log the complete job data array
         res.render('allJobs.ejs', { job: jobsWithCompanyNames });
-        
-
     } catch (error) {
         console.error("Error fetching jobs:", error);
         res.status(500).send("Internal Server Error");
     }
 });
+
+
+
 
 
 app.get('/allEmployers', (req, res) => {
@@ -253,69 +258,39 @@ app.post('/deleteCandidate', checkAuthenticatedCandidate, (req, res) => {
 
 
 app.post('/searchJobs', checkAuthenticatedCandidate, (req, res) => {
-
-    // if (req.body.location != null)
     const queryObj = {};
 
-    var filter_location = req.body.location;
-    if (filter_location!=="Any") {
-        queryObj['location'] = { "$in" : [filter_location]}
+    if (req.body.location !== "Any") {
+        queryObj['location'] = { "$in" : [req.body.location] };
     }
 
-    var filter_degree = req.body.degree;
-    if (filter_degree!=="Any") {
-        queryObj['degrees'] = { "$in" : [filter_degree]}
+    if (req.body.degree !== "Any") {
+        queryObj['degrees'] = { "$in" : [req.body.degree] };
     }
 
-    var filter_year = req.body.year;
-
-    if (filter_year!=="Any") {
-        queryObj['batches'] = { "$in" : [filter_year]}
+    // Assuming you've added an "openings" field to your Job schema
+    // and that it's a number. Adjust accordingly if it's a different type.
+    if (req.body.openings !== "Any") {
+        queryObj['Openings'] = { "$gte" : parseInt(req.body.openings, 10) };
     }
 
-    var maxCTC = 10000, minCTC = 0;
-
-    if (req.body.ctc == "Any") 
-    {
-        maxCTC = 10000; 
-        minCTC = 0;
+    if (req.body.year !== "Any") {
+        queryObj['batches'] = { "$in" : [parseInt(req.body.year, 10)] };
     }
 
-    else if (req.body.ctc == "<5")
-    {
-        maxCTC = 5;
-    }
-    else if (req.body.ctc == "5-10")
-    {
-        minCTC = 5;
-        maxCTC = 10;
-    }
-    else if (req.body.ctc == "10-20")
-    {
-        minCTC = 10;
-        maxCTC = 20;
-    }
-    else if (req.body.ctc == "20-30")
-    {
-        minCTC = 20;
-        maxCTC = 30;
-    }
-    else if (req.body.ctc == ">30")
-    {
-        minCTC = 30;
-    }
-
-    queryObj['ctc'] = { $gte :  minCTC, $lte :  maxCTC};
-
-    // console.log(queryObj);
-    // 'location': { "$in" : [filter_location]}, 
-    // 'degree': { "$in" : [filter_degree]},
     Job.find(queryObj, function (err, job) {
         if (err) { console.log(err); }
-        //console.log(job);
-        res.render('searchJobs.ejs', {job, filter:'yes', location_filter: filter_location, degree_filter: filter_degree, ctc_filter: req.body.ctc, year_filter: req.body.year});
-    })
-})
+        res.render('searchJobs.ejs', {
+            job, 
+            filter: 'yes', 
+            location_filter: req.body.location, 
+            degree_filter: req.body.degree, 
+            openings_filter: req.body.openings, // Added this line
+            year_filter: req.body.year
+        });
+    });
+});
+
 
 app.get('/myJobs', checkAuthenticatedEmployer, async (req, res) => {
     try {
@@ -324,13 +299,13 @@ app.get('/myJobs', checkAuthenticatedEmployer, async (req, res) => {
         const jobsWithCompanyNames = await Promise.all(jobs.map(async (job) => {
             const employer = await Employer.findById(job.company_id);
             if (employer) {
-                // Combine the job data with the company name into a new object
-                return {...job._doc, company_name: employer.name};
+                return { ...job._doc, company_name: employer.name, openings: job.openings || 0, location: job.location.length ? job.location : ['Not specified'] };
             }
-            return job._doc;  // If no employer is found, return the job as is
+            return job._doc;
         }));
-
+        
         res.render('myJobs.ejs', { job: jobsWithCompanyNames });
+        
     } catch (error) {
         console.error("Error fetching jobs:", error);
         res.status(500).send("Internal Server Error");
@@ -513,23 +488,21 @@ app.post('/candidateSignup', checkNotAuthenticatedCandidate, (req, res) => {
 })
 
 app.post('/addJob', checkAuthenticatedEmployer, (req, res) => {
+    const newJob = new Job({
+        company_id: req.user,
+        position: req.body.position,
+        batches: req.body.year.split(',').map(Number),
+        degrees: req.body.degree.split(','),
+        req_cpi: req.body.cpi,
+        ctc: req.body.ctc,
+        Openings: req.body.openings ? parseInt(req.body.openings) : 0,
+        apply: req.body.apply,
+        location: req.body.location ? req.body.location.split(',') : ['Not specified'],
+    });
+    newJob.save();
+    res.redirect('/employerHome');
+});
 
-        //console.log("ADD JOB " + employer.name + " " + typeof(employer.name));
-        const newJob = new Job({
-            company_id: req.user,
-            position: req.body.position,
-            batches: req.body.year,
-            degrees: req.body.degree,
-            req_cpi: req.body.cpi,
-            Openings: req.body.ctc,
-            apply: req.body.apply,
-            locations: req.body.location
-        });
-        //console.log("NEW JOB " + newJob);
-        newJob.save();
-        res.redirect('/employerHome');
-
-})
 
 app.delete('/logoutEmployer', (req, res) => {
     req.logOut(req.user, err => {
